@@ -1,24 +1,26 @@
-import React from 'react'
-import { View, Text, Button, StyleSheet } from 'react-native'
+// In App.js in a new project
 
-const App = () => {
+import * as React from 'react';
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import HomeScreen from './Screens/HomeScreen'
+import LoginScreen from './Screens/LoginScreen'
+import ProfileScreen from './Screens/ProfileScreen'
+
+
+const Stack = createNativeStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>APP</Text>
-      <Button
-          title="Click Here"
-          onPress={() => alert('Button Clicked!')}
-        />
-    </View>
-  )
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Home'>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
 
-export default App
-
-const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    alignItems: 'center',
-    justifyContent:'center'
-  }
-});
+export default App;
